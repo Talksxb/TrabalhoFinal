@@ -36,6 +36,10 @@ contract FinanciamentoColetivo {
         msg.sender.transfer(address(this).balance);
     }
 
+    function getContractBalance() public view returns(uint256) {
+        return address(this).balance;
+    }
+    
     function retornodoacao() public {
         require(address(this).balance < metadeFundos);  
         require(now >= prazofinal);               
