@@ -31,3 +31,20 @@ function doacao() {
             boxCommStatus.innerHTML = "Doação Realizada!";
         })
     }        
+
+function getContractBalance() {    
+    var boxBalance = document.getElementById("boxBalance");
+    console.log("getContractBalance - submitting the request");     
+    contract.getContractBalance()
+    .then( (resultFromContract) => {
+        console.log("getContractBalance - result is", resultFromContract);
+        boxBalance.innerHTML = resultFromContract;
+    })
+    .catch( (err) => {
+        console.error(err);
+        alert("A screen will be load asking to allow this page to connect with your Ethereum account.\nPlease give this permission to proceed.\nOr if you don't have an Ethereum account please install Metamask");
+        ethereum.enable();
+        alert("After you give the permission we are going to reload the page");
+        document.location = "index.html";
+    });
+}
